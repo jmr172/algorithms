@@ -1,4 +1,4 @@
 1100b
-b11x111bbbbb
-bbs1100ebs0011ebbbb
-bbs1100ebs0011ebbbb
+11x1111b
+11x1111b
+11x11b

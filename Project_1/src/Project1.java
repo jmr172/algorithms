@@ -130,7 +130,38 @@ public class Project1 {
     } catch (IOException e) {
       System.err.println("Failed to read from file: " + e.getMessage());
     }
+    if (dtm.plain_state == -2) {
+      System.out.println("DTM ended in a YES state.\n");
+    }
+    else {
+      System.out.println("DTM ended in a No state.\n");
+    }
 
+    try {
+      in = dtm_reader.readLine();
+      dtm.subtraction(in, dtm_writer);
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+    }
+    if (dtm.plain_state == -2) {
+      System.out.println("DTM ended in a YES state.\n");
+    }
+    else {
+      System.out.println("DTM ended in a No state.\n");
+    }
+
+    try {
+      in = dtm_reader.readLine();
+      dtm.multiplication(in, dtm_writer);
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+    }
+    if (dtm.plain_state == -2) {
+      System.out.println("DTM ended in a YES state.\n");
+    }
+    else {
+      System.out.println("DTM ended in a No state.\n");
+    }
 
     try{
       dtm_reader.close();
