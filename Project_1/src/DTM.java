@@ -164,9 +164,9 @@ public class DTM {
     // Multiplication DTM for Part 2.2
     // 0
     state = new HashMap<Character,Command>();
-    state.put('1', new Command(1,'b',1));
-    state.put('b', new Command(0,'b',1));
-    state.put('x', new Command(9,'x',1));
+    state.put('1', new Command(2,'b',1));
+    state.put('b', new Command(1,'b',1));
+    state.put('x', new Command(-1,'x',0));
     state.put('j', new Command(-1,'j',0));
     this.multiplication_dictionaries.add(state);
     // 1
@@ -186,30 +186,30 @@ public class DTM {
     // 3
     state = new HashMap<Character,Command>();
     state.put('1', new Command(4,'j',1));
-    state.put('b', new Command(-1,'b',0));
+    state.put('b', new Command(7,'b',-1));
     state.put('x', new Command(-1,'x',0));
-    state.put('j', new Command(-1,'j',0));
+    state.put('j', new Command(3,'j',1));
     this.multiplication_dictionaries.add(state);
     // 4
     state = new HashMap<Character,Command>();
     state.put('1', new Command(4,'1',1));
-    state.put('b', new Command(5,'1',-1));
+    state.put('b', new Command(5,'b',1));
     state.put('x', new Command(-1,'x',0));
     state.put('j', new Command(-1,'j',0));
     this.multiplication_dictionaries.add(state);
     // 5
     state = new HashMap<Character,Command>();
-    state.put('1', new Command(6,'1',-1));
-    state.put('b', new Command(-1,'b',0));
+    state.put('1', new Command(5,'1',1));
+    state.put('b', new Command(6,'1',-1));
     state.put('x', new Command(-1,'x',0));
-    state.put('j', new Command(7,'1',-1));
+    state.put('j', new Command(-1,'j',0));
     this.multiplication_dictionaries.add(state);
     // 6
     state = new HashMap<Character,Command>();
     state.put('1', new Command(6,'1',-1));
-    state.put('b', new Command(-2,'1',0));
-    state.put('x', new Command(-1,'x',0));
-    state.put('j', new Command(3,'j',1));
+    state.put('b', new Command(6,'b',-1));
+    state.put('x', new Command(3,'x',1));
+    state.put('j', new Command(6,'j',-1));
     this.multiplication_dictionaries.add(state);
     // 7
     state = new HashMap<Character,Command>();
@@ -225,13 +225,13 @@ public class DTM {
     state.put('x', new Command(-1,'x',0));
     state.put('j', new Command(-1,'j',0));
     this.multiplication_dictionaries.add(state);
-    // 9
-    state = new HashMap<Character,Command>();
-    state.put('1', new Command(9,'b',1));
-    state.put('b', new Command(-2,'b',0));
-    state.put('x', new Command(-1,'x',0));
-    state.put('j', new Command(-1,'j',0));
-    this.multiplication_dictionaries.add(state);
+    // // 9
+    // state = new HashMap<Character,Command>();
+    // state.put('1', new Command(9,'b',1));
+    // state.put('b', new Command(-2,'b',0));
+    // state.put('x', new Command(-1,'x',0));
+    // state.put('j', new Command(-1,'j',0));
+    // this.multiplication_dictionaries.add(state);
 
   }
 
@@ -406,14 +406,16 @@ public class DTM {
     int multiplication_head_position = 0;
     char multiplication_read_value;
     Command multiplication_command;
+    String debug_print;
     while (this.multiplication_state >= 0) {
+      debug_print = Integer.toString(this.multiplication_state);
       multiplication_read_value = multiplication_input[multiplication_head_position];
       multiplication_command = this.multiplication_dictionaries.get(this.multiplication_state).get(multiplication_read_value);
       this.multiplication_state = multiplication_command.state_number;
       multiplication_input[multiplication_head_position] = multiplication_command.to_write;
       multiplication_head_position += multiplication_command.move;
       if (data.length() < 30) {
-        System.out.print("State: " + this.multiplication_state + ", ");
+        // System.out.print("State: " + debug_print + " -> " + this.multiplication_state + ", ");
         System.out.println(multiplication_input);
       }
       else {

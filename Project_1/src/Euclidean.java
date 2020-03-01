@@ -19,7 +19,7 @@ public class Euclidean {
   }
 
   // Calculate euclidean distance between every point
-  public void calc(double[][] input, double[][] output, int input_size) {
+  public void calc_all(double[][] input, double[][] output, int input_size) {
     int counter = 0;
     for (int i = 0; i < input_size; i++) {
       for (int j = i + 1; j < input_size; j++) {
@@ -37,6 +37,11 @@ public class Euclidean {
         counter++;
       }
     }
+  }
+
+  // Efficient calculate the closest pairs
+  public void calc_fast(double[][] input, double[][] output, int input_size) {
+    return;
   }
 
   // Find the smallest entry in the array

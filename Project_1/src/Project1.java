@@ -34,9 +34,9 @@ public class Project1 {
     Banner banner = new Banner();
     banner.show();
 
-    if (args.length != 4) {
+    if (args.length != 5) {
       System.out.println(args.length);
-      System.out.println("Usage: java Project1 [path/to/input1] [path/to/input2] [path/to/output1] [path/to/output2]");
+      System.out.println("Usage: java Project1 [path/to/input1] [path/to/input2] [path/to/output1] [path/to/output2] [true/false]");
       System.exit(1);
     }
 
@@ -94,19 +94,21 @@ public class Project1 {
     // Create a eculidean object
     Euclidean euclidean = new Euclidean();
 
+    // Part 1.1 of the assignment
     // Brute force calculate the distance between every point
-    euclidean.calc(input_array, comparison_array, num_points);
+    euclidean.calc_all(input_array, comparison_array, num_points);
     for (int i = 0; i < num_comparisons; i++) System.out.println("Point " + (int)comparison_array[i][0] + " -> Point " + (int)comparison_array[i][1] + ": " + comparison_array[i][2]);
-
-    // Find the two closest points
-    // int index_of_closest_points = euclidean.find(comparison_array, num_comparisons);
-    // System.out.println("\nThe two closest points are Point " + (int)comparison_array[index_of_closest_points][0]
-    //                   + " and Point "+ (int)comparison_array[index_of_closest_points][1]
-    //                   + " with a distance of " + comparison_array[index_of_closest_points][2]);
 
     System.out.println("\nThe two closest points are Point " + (int)euclidean.closest_pair[0][0]
                       + " and Point "+ (int)euclidean.closest_pair[0][1]
                       + " with a distance of " + euclidean.closest_pair[0][2] + "\n");
+
+    // Part 2.2 of the assignment
+    comparison_array = new double[num_comparisons][3];
+    euclidean.calc_fast(input_array, comparison_array, num_points);
+
+    // debug statement
+    if (args[4].contains("true")) return;
 
     // Part 2.1 of the assignment
     DTM dtm = new DTM();
@@ -124,13 +126,14 @@ public class Project1 {
       System.out.println("DTM ended in a No state.\n");
     }
 
+    // Part 2.2 of the assignment
     try {
       in = dtm_reader.readLine();
       dtm.addition(in, dtm_writer);
     } catch (IOException e) {
       System.err.println("Failed to read from file: " + e.getMessage());
     }
-    if (dtm.plain_state == -2) {
+    if (dtm.addition_state == -2) {
       System.out.println("DTM ended in a YES state.\n");
     }
     else {
@@ -143,7 +146,7 @@ public class Project1 {
     } catch (IOException e) {
       System.err.println("Failed to read from file: " + e.getMessage());
     }
-    if (dtm.plain_state == -2) {
+    if (dtm.subtraction_state == -2) {
       System.out.println("DTM ended in a YES state.\n");
     }
     else {
@@ -156,7 +159,7 @@ public class Project1 {
     } catch (IOException e) {
       System.err.println("Failed to read from file: " + e.getMessage());
     }
-    if (dtm.plain_state == -2) {
+    if (dtm.multiplication_state == -2) {
       System.out.println("DTM ended in a YES state.\n");
     }
     else {
