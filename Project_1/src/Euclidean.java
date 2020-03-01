@@ -8,8 +8,15 @@
 
 public class Euclidean {
 
+  double[][] closest_pair;
+
   // Constructor for the class
-  public Euclidean() {}
+  public Euclidean() {
+    this.closest_pair = new double[1][3];
+    this.closest_pair[0][0] = -1;
+    this.closest_pair[0][1] = -1;
+    this.closest_pair[0][2] = -1;
+  }
 
   // Calculate euclidean distance between every point
   public void calc(double[][] input, double[][] output, int input_size) {
@@ -25,6 +32,8 @@ public class Euclidean {
         output[counter][0] = i;
         output[counter][1] = j;
         output[counter][2] = distance;
+        if (this.closest_pair[0][2] < 0) this.closest_pair[0] = output[counter];
+        else if (this.closest_pair[0][2] > distance) this.closest_pair[0] = output[counter];
         counter++;
       }
     }

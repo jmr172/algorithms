@@ -12,11 +12,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.Math;
+import java.util.*;
 
 public class Project1 {
 
-  public static BufferedReader buffered_reader;
-  public static BufferedWriter buffered_writer;
+  public static BufferedReader euclidean_reader;
+  public static BufferedWriter euclidean_writer;
+  public static BufferedReader dtm_reader;
+  public static BufferedWriter dtm_writer;
   // input array = [x_coor, y_coor]
   public static double[][] input_array;
   // comparison array = [point_1, point_2, distance]
@@ -31,15 +34,18 @@ public class Project1 {
     Banner banner = new Banner();
     banner.show();
 
-    if (args.length != 2) {
-      System.out.println("Usage: java Project1 [path/to/input] [path/to/output]");
+    if (args.length != 4) {
+      System.out.println(args.length);
+      System.out.println("Usage: java Project1 [path/to/input1] [path/to/input2] [path/to/output1] [path/to/output2]");
       System.exit(1);
     }
 
     // Open the input file for the frequency table
     try {
-      buffered_reader = new BufferedReader(new FileReader(args[0]));
-      buffered_writer = new BufferedWriter(new FileWriter(args[1]));
+      euclidean_reader = new BufferedReader(new FileReader(args[0]));
+      dtm_reader = new BufferedReader(new FileReader(args[1]));
+      euclidean_writer = new BufferedWriter(new FileWriter(args[2]));
+      dtm_writer = new BufferedWriter(new FileWriter(args[3]));
     } catch (IOException e) {
       System.err.println("Failed to open file: " + e.getMessage());
       return;
@@ -54,13 +60,13 @@ public class Project1 {
     int num_comparisons = 0;
     try {
       // Count the number of data points
-      while (buffered_reader.readLine() != null) {
+      while (euclidean_reader.readLine() != null) {
         num_points++;
       }
 
       // Reset file pointer back to head
-      buffered_reader.close();
-      buffered_reader = new BufferedReader(new FileReader(args[0]));
+      euclidean_reader.close();
+      euclidean_reader = new BufferedReader(new FileReader(args[0]));
 
       // Create array to hold file input
       input_array = new double[num_points][2];
@@ -71,7 +77,7 @@ public class Project1 {
       comparison_array = new double[num_comparisons][3];
 
       // Read all the data points from file to array
-      while ((in = buffered_reader.readLine()) != null) {
+      while ((in = euclidean_reader.readLine()) != null) {
         String[] handler = in.split(",");
         double value = Double.parseDouble(handler[0]);
         input_array[counter][0] = Double.parseDouble(handler[0]);
@@ -93,11 +99,46 @@ public class Project1 {
     for (int i = 0; i < num_comparisons; i++) System.out.println("Point " + (int)comparison_array[i][0] + " -> Point " + (int)comparison_array[i][1] + ": " + comparison_array[i][2]);
 
     // Find the two closest points
-    int index_of_closest_points = euclidean.find(comparison_array, num_comparisons);
-    System.out.println("\nThe two closest points are Point " + (int)comparison_array[index_of_closest_points][0]
-                      + " and Point "+ (int)comparison_array[index_of_closest_points][1]
-                      + " with a distance of " + comparison_array[index_of_closest_points][2]);
+    // int index_of_closest_points = euclidean.find(comparison_array, num_comparisons);
+    // System.out.println("\nThe two closest points are Point " + (int)comparison_array[index_of_closest_points][0]
+    //                   + " and Point "+ (int)comparison_array[index_of_closest_points][1]
+    //                   + " with a distance of " + comparison_array[index_of_closest_points][2]);
 
+    System.out.println("\nThe two closest points are Point " + (int)euclidean.closest_pair[0][0]
+                      + " and Point "+ (int)euclidean.closest_pair[0][1]
+                      + " with a distance of " + euclidean.closest_pair[0][2] + "\n");
+
+    // Part 2.1 of the assignment
+    DTM dtm = new DTM();
+    dtm.states();
+    try {
+      in = dtm_reader.readLine();
+      dtm.run(in, dtm_writer);
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+    }
+    if (dtm.plain_state == -2) {
+      System.out.println("DTM ended in a YES state.\n");
+    }
+    else {
+      System.out.println("DTM ended in a No state.\n");
+    }
+
+    try {
+      in = dtm_reader.readLine();
+      dtm.addition(in, dtm_writer);
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+    }
+
+
+    try{
+      dtm_reader.close();
+      euclidean_writer.close();
+      dtm_writer.close();
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+      return;
+    }
   }
-
 }
