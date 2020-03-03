@@ -34,9 +34,9 @@ public class Project1 {
     Banner banner = new Banner();
     banner.show();
 
-    if (args.length != 5) {
+    if (args.length != 4) {
       System.out.println(args.length);
-      System.out.println("Usage: java Project1 [path/to/input1] [path/to/input2] [path/to/output1] [path/to/output2] [true/false]");
+      System.out.println("Usage: java Project1 [path/to/input1] [path/to/input2] [path/to/output1] [path/to/output2]");
       System.exit(1);
     }
 
@@ -73,7 +73,6 @@ public class Project1 {
 
       // Create array to hold every comparison and their results
       num_comparisons = (int)(Double.valueOf(num_points + 1) * (Double.valueOf(num_points) / 2) - Double.valueOf(num_points));
-      System.out.println("Number of comparisons: " + num_comparisons + "\n");
       comparison_array = new double[num_comparisons][3];
 
       // Read all the data points from file to array
@@ -97,7 +96,7 @@ public class Project1 {
     // Part 1.1 of the assignment
     // Brute force calculate the distance between every point
     euclidean.calc_all(input_array, comparison_array, num_points);
-    for (int i = 0; i < num_comparisons; i++) System.out.println("Point " + (int)comparison_array[i][0] + " -> Point " + (int)comparison_array[i][1] + ": " + comparison_array[i][2]);
+    // for (int i = 0; i < num_comparisons; i++) System.out.println("Point " + (int)comparison_array[i][0] + " -> Point " + (int)comparison_array[i][1] + ": " + comparison_array[i][2]);
 
     System.out.println("\nThe two closest points are Point " + (int)euclidean.closest_pair[0][0]
                       + " and Point "+ (int)euclidean.closest_pair[0][1]
@@ -126,7 +125,7 @@ public class Project1 {
     System.out.println();
 
     // debug statement
-    if (args[4].contains("true")) return;
+    // if (args[4].contains("true")) return;
 
     // Part 2.1 of the assignment
     DTM dtm = new DTM();

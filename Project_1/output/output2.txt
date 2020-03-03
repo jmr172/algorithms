@@ -1,0 +1,58 @@
+Running provided DTM...
+101b
+101b
+101b
+101b
+101b
+10bb
+1bbb
+DTM ended in a NO state.
+
+Running unary addition DTM...
+11x111bbbbbbbb
+b1x111bbbbbbbb
+b1x111bbbbbbbb
+b1x111bbbbbbbb
+b1x111bbbbbbbb
+b1x111bbbbbbbb
+b1x111bbbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+b1x1111bbbbbbb
+bbx1111bbbbbbb
+bbx1111bbbbbbb
+bbx1111bbbbbbb
+bbx1111bbbbbbb
+bbx1111bbbbbbb
+bbx1111bbbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+bbx11111bbbbbb
+DTM ended in a YES state.
+
+Running unary subtraction DTM...
+11xx111b
+b1xx111b
+b1xx111b
+b1xx111b
+b1xx111b
+DTM ended in a NO state.
+
+Running unary multiplication DTM...
+11x1x1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+b1x1x1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+b1x1x1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+b1x1x1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+b1xjx1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+b1xjx1bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+DTM ended in a NO state.

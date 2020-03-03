@@ -231,17 +231,18 @@ public class DTM {
     char[] plain_input = data.toCharArray();
     char[] plain_copy = new char[plain_input.length];
     List<char[]> plain_history = new ArrayList<char[]>();
+
     if (plain_input.length < 30) {
       System.out.println("Running provided DTM...");
       System.out.println(plain_input);
     }
-    else {
-      plain_copy = new char[plain_input.length];
-      for (int i = 0; i < plain_copy.length; i++) {
-        plain_copy[i] = plain_input[i];
-      }
-      plain_history.add(plain_copy);
+
+    plain_copy = new char[plain_input.length];
+    for (int i = 0; i < plain_copy.length; i++) {
+      plain_copy[i] = plain_input[i];
     }
+    plain_history.add(plain_copy);
+
     int plain_head_position = 0;
     char plain_read_value;
     Command plain_command;
@@ -251,26 +252,33 @@ public class DTM {
       this.plain_state = plain_command.state_number;
       plain_input[plain_head_position] = plain_command.to_write;
       plain_head_position += plain_command.move;
+
       if (plain_input.length < 30) {
         System.out.println(plain_input);
       }
-      else {
-        plain_copy = new char[plain_input.length];
-        for (int i = 0; i < plain_copy.length; i++) {
-          plain_copy[i] = plain_input[i];
-        }
-        plain_history.add(plain_copy);
+
+      plain_copy = new char[plain_input.length];
+      for (int i = 0; i < plain_copy.length; i++) {
+        plain_copy[i] = plain_input[i];
       }
+      plain_history.add(plain_copy);
     }
-    if (plain_input.length >= 30) {
+
+    try {
+      output.write("Running provided DTM...\n");
       for (char[] val : plain_history) {
-        try {
           output.write(String.valueOf(val) + "\n");
-        } catch(IOException e) {
-          System.err.println("Failed to write to file: " + e.getMessage());
-        }
       }
+      if (plain_state == -2) {
+        output.write("DTM ended in a YES state.\n");
+      }
+      else {
+        output.write("DTM ended in a NO state.\n");
+      }
+    } catch(IOException e) {
+      System.err.println("Failed to write to file: " + e.getMessage());
     }
+
     return String.valueOf(plain_input);
   }
 
@@ -287,13 +295,11 @@ public class DTM {
       System.out.println("Running unary addition DTM...");
       System.out.println(addition_input);
     }
-    else {
-      addition_copy = new char[addition_input.length];
-      for (int i = 0; i < addition_copy.length; i++) {
-        addition_copy[i] = addition_input[i];
-      }
-      addition_history.add(addition_copy);
+    addition_copy = new char[addition_input.length];
+    for (int i = 0; i < addition_copy.length; i++) {
+      addition_copy[i] = addition_input[i];
     }
+    addition_history.add(addition_copy);
     int addition_head_position = 0;
     char addition_read_value;
     Command addition_command;
@@ -307,23 +313,28 @@ public class DTM {
         // System.out.print("State: " + this.addition_state + ", ");
         System.out.println(addition_input);
       }
-      else {
-        addition_copy = new char[addition_input.length];
-        for (int i = 0; i < addition_copy.length; i++) {
-          addition_copy[i] = addition_input[i];
-        }
-        addition_history.add(addition_copy);
+      addition_copy = new char[addition_input.length];
+      for (int i = 0; i < addition_copy.length; i++) {
+        addition_copy[i] = addition_input[i];
       }
+      addition_history.add(addition_copy);
     }
-    if (addition_input.length >= 30) {
+
+    try {
+      output.write("\nRunning unary addition DTM...\n");
       for (char[] val : addition_history) {
-        try {
           output.write(String.valueOf(val) + "\n");
-        } catch(IOException e) {
-          System.err.println("Failed to write to file: " + e.getMessage());
-        }
       }
+      if (addition_state == -2) {
+        output.write("DTM ended in a YES state.\n");
+      }
+      else {
+        output.write("DTM ended in a NO state.\n");
+      }
+    } catch(IOException e) {
+      System.err.println("Failed to write to file: " + e.getMessage());
     }
+
     return String.valueOf(addition_input);
   }
 
@@ -331,17 +342,18 @@ public class DTM {
     char[] subtraction_input = data.toCharArray();
     char[] subtraction_copy = new char[subtraction_input.length];
     List<char[]> subtraction_history = new ArrayList<char[]>();
+
     if (subtraction_input.length < 30) {
       System.out.println("Running unary subtraction DTM...");
       System.out.println(subtraction_input);
     }
-    else {
-      subtraction_copy = new char[subtraction_input.length];
-      for (int i = 0; i < subtraction_copy.length; i++) {
-        subtraction_copy[i] = subtraction_input[i];
-      }
-      subtraction_history.add(subtraction_copy);
+
+    subtraction_copy = new char[subtraction_input.length];
+    for (int i = 0; i < subtraction_copy.length; i++) {
+      subtraction_copy[i] = subtraction_input[i];
     }
+    subtraction_history.add(subtraction_copy);
+
     int subtraction_head_position = 0;
     char subtraction_read_value;
     Command subtraction_command;
@@ -351,27 +363,34 @@ public class DTM {
       this.subtraction_state = subtraction_command.state_number;
       subtraction_input[subtraction_head_position] = subtraction_command.to_write;
       subtraction_head_position += subtraction_command.move;
+
       if (subtraction_input.length < 30) {
-        // System.out.print("State: " + this.subtraction_state + ", ");
         System.out.println(subtraction_input);
       }
-      else {
-        subtraction_copy = new char[subtraction_input.length];
-        for (int i = 0; i < subtraction_copy.length; i++) {
-          subtraction_copy[i] = subtraction_input[i];
-        }
-        subtraction_history.add(subtraction_copy);
+
+      subtraction_copy = new char[subtraction_input.length];
+      for (int i = 0; i < subtraction_copy.length; i++) {
+        subtraction_copy[i] = subtraction_input[i];
       }
+      subtraction_history.add(subtraction_copy);
+
     }
-    if (subtraction_input.length >= 30) {
+
+    try {
+      output.write("\nRunning unary subtraction DTM...\n");
       for (char[] val : subtraction_history) {
-        try {
           output.write(String.valueOf(val) + "\n");
-        } catch(IOException e) {
-          System.err.println("Failed to write to file: " + e.getMessage());
-        }
       }
+      if (subtraction_state == -2) {
+        output.write("DTM ended in a YES state.\n");
+      }
+      else {
+        output.write("DTM ended in a NO state.\n");
+      }
+    } catch(IOException e) {
+      System.err.println("Failed to write to file: " + e.getMessage());
     }
+
     return String.valueOf(subtraction_input);
   }
 
@@ -384,17 +403,18 @@ public class DTM {
     char[] multiplication_input = multiplication_padding.toCharArray();
     char[] multiplication_copy = new char[multiplication_input.length];
     List<char[]> multiplication_history = new ArrayList<char[]>();
+
     if (data.length() < 30) {
       System.out.println("Running unary multiplication DTM...");
       System.out.println(multiplication_input);
     }
-    else {
-      multiplication_copy = new char[multiplication_input.length];
-      for (int i = 0; i < multiplication_copy.length; i++) {
-        multiplication_copy[i] = multiplication_input[i];
-      }
-      multiplication_history.add(multiplication_copy);
+
+    multiplication_copy = new char[multiplication_input.length];
+    for (int i = 0; i < multiplication_copy.length; i++) {
+      multiplication_copy[i] = multiplication_input[i];
     }
+    multiplication_history.add(multiplication_copy);
+
     int multiplication_head_position = 0;
     char multiplication_read_value;
     Command multiplication_command;
@@ -410,23 +430,30 @@ public class DTM {
         // System.out.print("State: " + debug_print + " -> " + this.multiplication_state + ", ");
         System.out.println(multiplication_input);
       }
-      else {
-        multiplication_copy = new char[multiplication_input.length];
-        for (int i = 0; i < multiplication_copy.length; i++) {
-          multiplication_copy[i] = multiplication_input[i];
-        }
-        multiplication_history.add(multiplication_copy);
+
+      multiplication_copy = new char[multiplication_input.length];
+      for (int i = 0; i < multiplication_copy.length; i++) {
+        multiplication_copy[i] = multiplication_input[i];
       }
+      multiplication_history.add(multiplication_copy);
+
     }
-    if (data.length() >= 30) {
+
+    try {
+      output.write("\nRunning unary multiplication DTM...\n");
       for (char[] val : multiplication_history) {
-        try {
           output.write(String.valueOf(val) + "\n");
-        } catch(IOException e) {
-          System.err.println("Failed to write to file: " + e.getMessage());
-        }
       }
+      if (multiplication_state == -2) {
+        output.write("DTM ended in a YES state.\n");
+      }
+      else {
+        output.write("DTM ended in a NO state.\n");
+      }
+    } catch(IOException e) {
+      System.err.println("Failed to write to file: " + e.getMessage());
     }
+
     return String.valueOf(multiplication_input);
   }
 }

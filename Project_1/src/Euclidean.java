@@ -75,16 +75,10 @@ public class Euclidean {
     int min_x = find(input, midpoint-(int)shortest_distance) - 1;
     int max_x = find(input, midpoint+(int)shortest_distance);
 
-    System.out.println(min_x);
-    System.out.println(max_x);
-
     double[][] input_subarray = new double[max_x-min_x+1][2];
     for (int i = 0; i <= max_x-min_x; i++) {
       input_subarray[i][0] = input[min_x + i][0];
       input_subarray[i][1] = input[min_x + i][1];
-      System.out.print(input_subarray[i][0]);
-      System.out.print(", ");
-      System.out.println(input_subarray[i][1]);
     }
 
     int final_comparison_counter = (int)(0.5*(input_subarray.length*input_subarray.length-input_subarray.length));
