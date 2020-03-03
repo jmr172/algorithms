@@ -82,7 +82,7 @@ public class Project1 {
         double value = Double.parseDouble(handler[0]);
         input_array[counter][0] = Double.parseDouble(handler[0]);
         input_array[counter][1] = Double.parseDouble(handler[1]);
-        System.out.println("Point " + counter + ": " + (int)input_array[counter][0] + ", " + (int)input_array[counter][1]);
+        // System.out.println("Point " + counter + ": " + (int)input_array[counter][0] + ", " + (int)input_array[counter][1]);
         counter++;
       }
       System.out.println();
@@ -101,11 +101,29 @@ public class Project1 {
 
     System.out.println("\nThe two closest points are Point " + (int)euclidean.closest_pair[0][0]
                       + " and Point "+ (int)euclidean.closest_pair[0][1]
-                      + " with a distance of " + euclidean.closest_pair[0][2] + "\n");
+                      + " with a distance of " + euclidean.closest_pair[0][2]);
+    System.out.print("Total number of comparisons: ");
+    System.out.println(num_comparisons);
+    System.out.println();
 
     // Part 2.2 of the assignment
     comparison_array = new double[num_comparisons][3];
-    euclidean.calc_fast(input_array, comparison_array, num_points);
+    int total_comparisons = euclidean.calc_fast(input_array, comparison_array, num_points);
+
+    // System.out.println("\nThe left closest points are Point " + (int)euclidean.left_closest_pair[0][0]
+    //                   + " and Point "+ (int)euclidean.left_closest_pair[0][1]
+    //                   + " with a distance of " + euclidean.left_closest_pair[0][2] + "\n");
+    //
+    // System.out.println("\nThe right closest points are Point " + (int)euclidean.right_closest_pair[0][0]
+    //                   + " and Point "+ (int)euclidean.right_closest_pair[0][1]
+    //                   + " with a distance of " + euclidean.right_closest_pair[0][2] + "\n");
+
+    System.out.println("\nThe final closest points are Point " + (int)euclidean.final_closest_pair[0][0]
+                      + " and Point "+ (int)euclidean.final_closest_pair[0][1]
+                      + " with a distance of " + euclidean.final_closest_pair[0][2]);
+    System.out.print("Total number of comparisons: ");
+    System.out.println(total_comparisons);
+    System.out.println();
 
     // debug statement
     if (args[4].contains("true")) return;

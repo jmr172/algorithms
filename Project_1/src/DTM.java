@@ -225,14 +225,6 @@ public class DTM {
     state.put('x', new Command(-1,'x',0));
     state.put('j', new Command(-1,'j',0));
     this.multiplication_dictionaries.add(state);
-    // // 9
-    // state = new HashMap<Character,Command>();
-    // state.put('1', new Command(9,'b',1));
-    // state.put('b', new Command(-2,'b',0));
-    // state.put('x', new Command(-1,'x',0));
-    // state.put('j', new Command(-1,'j',0));
-    // this.multiplication_dictionaries.add(state);
-
   }
 
   public String run(String data, BufferedWriter output) {
