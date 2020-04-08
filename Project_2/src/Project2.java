@@ -19,9 +19,9 @@ public class Project2 {
   public static BufferedReader buffered_reader;
   public static BufferedWriter buffered_writer;
   public static List<Integer> input_list;
-  public static int[] input_array;
+  public static Integer[] input_array;
   public static List<Integer> output_list;
-  public static int[] output_array;
+  public static Integer[] output_array;
 
   /**
   * @param args[]:  [path/to/input] [path/to/output]
@@ -47,6 +47,62 @@ public class Project2 {
       return;
     }
 
+    String in;
+    input_list = new ArrayList<Integer>();
+    try {
+      while ((in = buffered_reader.readLine()) != null) {
+          input_list.add(Integer.parseInt(in));
+      }
+    } catch (IOException e) {
+      System.err.println("Failed to read from file: " + e.getMessage());
+      return;
+    }
+
+    int num_elements = input_list.size();
+    input_array = new Integer[num_elements];
+    input_list.toArray(input_array);
+
+    Integer[] quicksort_array = input_array.clone();
+    Integer[] heapsort_array = input_array.clone();
+    Integer[] introsort_array = input_array.clone();
+
+    Integer[] new_arr = {8,7,6,5,4,3};
+
+    Sorter sorter = new Sorter();
+
+    System.out.println("Performing quicksort...");
+    sorter.quicksort(quicksort_array, 0, quicksort_array.length - 1);
+    System.out.println("Done with quicksort!");
+
+    System.out.println("Performing heapsort...");
+    sorter.heapsort(heapsort_array, 0, heapsort_array.length);
+    System.out.println("Done with heapsort!");
+
+    System.out.println("Performing introsort...");
+    sorter.introsort(introsort_array, 0, introsort_array.length-1, 2*(int)Math.floor(Math.log(introsort_array.length)/Math.log(2)));
+    System.out.println("Done with introsort!");
+
+    try {
+      buffered_writer.write("\nOutput of quicksort:\n");
+      for (int val : quicksort_array) {
+          buffered_writer.write(String.valueOf(val) + "\n");
+      }
+
+      buffered_writer.write("\nOutput of introsort:\n");
+      for (int val : introsort_array) {
+          buffered_writer.write(String.valueOf(val) + "\n");
+      }
+
+      buffered_writer.write("\nOutput of heapsort:\n");
+      for (int val : heapsort_array) {
+          buffered_writer.write(String.valueOf(val) + "\n");
+      }
+
+    } catch (IOException e) {
+      System.err.println("Failed to write to output file: " + e.getMessage());
+      return;
+    }
+
     try {
       buffered_reader.close();
       buffered_writer.close();
@@ -54,81 +110,5 @@ public class Project2 {
       System.err.println("Failed to close file: " + e.getMessage());
       return;
     }
-
-    // // String to be used when reading lines from the files
-    // String in;
-    //
-    // // Read from input table file and construct two dimensional array of input
-    // int counter = 0;
-    // int num_points = 0;
-    // int num_comparisons = 0;
-    // try {
-    //   // Count the number of data points
-    //   while (euclidean_reader.readLine() != null) {
-    //     num_points++;
-    //   }
-    //
-    //   // Reset file pointer back to head
-    //   euclidean_reader.close();
-    //   euclidean_reader = new BufferedReader(new FileReader(args[0]));
-    //
-    //   // Create array to hold file input
-    //   input_array = new double[num_points][2];
-    //
-    //   // Create array to hold every comparison and their results
-    //   num_comparisons = (int)(Double.valueOf(num_points + 1) * (Double.valueOf(num_points) / 2) - Double.valueOf(num_points));
-    //   comparison_array = new double[num_comparisons][3];
-    //
-    //   // Read all the data points from file to array
-    //   while ((in = euclidean_reader.readLine()) != null) {
-    //     String[] handler = in.split(",");
-    //     double value = Double.parseDouble(handler[0]);
-    //     input_array[counter][0] = Double.parseDouble(handler[0]);
-    //     input_array[counter][1] = Double.parseDouble(handler[1]);
-    //     // System.out.println("Point " + counter + ": " + (int)input_array[counter][0] + ", " + (int)input_array[counter][1]);
-    //     counter++;
-    //   }
-    //   System.out.println();
-    // } catch (IOException e) {
-    //   System.err.println("Failed to read from file: " + e.getMessage());
-    //   return;
-    // }
-
-    // // Create a eculidean object
-    // Euclidean euclidean = new Euclidean();
-
-    // // Part 1.1 of the assignment
-    // // Brute force calculate the distance between every point
-    // euclidean.calc_all(input_array, comparison_array, num_points);
-    // // for (int i = 0; i < num_comparisons; i++) System.out.println("Point " + (int)comparison_array[i][0] + " -> Point " + (int)comparison_array[i][1] + ": " + comparison_array[i][2]);
-    //
-    // System.out.println("\nThe two closest points are Point " + (int)euclidean.closest_pair[0][0]
-    //                   + " and Point "+ (int)euclidean.closest_pair[0][1]
-    //                   + " with a distance of " + euclidean.closest_pair[0][2]);
-    // System.out.print("Total number of comparisons: ");
-    // System.out.println(num_comparisons);
-    // System.out.println();
-
-    // Part 2.2 of the assignment
-    // comparison_array = new double[num_comparisons][3];
-    // int total_comparisons = euclidean.calc_fast(input_array, comparison_array, num_points);
-
-    // System.out.println("\nThe left closest points are Point " + (int)euclidean.left_closest_pair[0][0]
-    //                   + " and Point "+ (int)euclidean.left_closest_pair[0][1]
-    //                   + " with a distance of " + euclidean.left_closest_pair[0][2] + "\n");
-    //
-    // System.out.println("\nThe right closest points are Point " + (int)euclidean.right_closest_pair[0][0]
-    //                   + " and Point "+ (int)euclidean.right_closest_pair[0][1]
-    //                   + " with a distance of " + euclidean.right_closest_pair[0][2] + "\n");
-
-    // System.out.println("\nThe final closest points are Point " + (int)euclidean.final_closest_pair[0][0]
-    //                   + " and Point "+ (int)euclidean.final_closest_pair[0][1]
-    //                   + " with a distance of " + euclidean.final_closest_pair[0][2]);
-    // System.out.print("Total number of comparisons: ");
-    // System.out.println(total_comparisons);
-    // System.out.println();
-
-    // debug statement
-    // if (args[4].contains("true")) return;
   }
 }
