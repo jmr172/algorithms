@@ -71,16 +71,19 @@ public class Project2 {
     Sorter sorter = new Sorter();
 
     System.out.println("Performing quicksort...");
+    sorter.counter = 0;
     sorter.quicksort(quicksort_array, 0, quicksort_array.length - 1);
-    System.out.println("Done with quicksort!");
+    System.out.println("Done with quicksort! Number of comparisons: " + sorter.counter);
 
     System.out.println("Performing heapsort...");
+    sorter.counter = 0;
     sorter.heapsort(heapsort_array, 0, heapsort_array.length);
-    System.out.println("Done with heapsort!");
+    System.out.println("Done with heapsort! Number of comparisons: " + sorter.counter);
 
     System.out.println("Performing introsort...");
+    sorter.counter = 0;
     sorter.introsort(introsort_array, 0, introsort_array.length-1, 2*(int)Math.floor(Math.log(introsort_array.length)/Math.log(2)));
-    System.out.println("Done with introsort!");
+    System.out.println("Done with introsort! Number of comparisons: " + sorter.counter);
 
     try {
       buffered_writer.write("\nOutput of quicksort:\n");
@@ -88,13 +91,13 @@ public class Project2 {
           buffered_writer.write(String.valueOf(val) + "\n");
       }
 
-      buffered_writer.write("\nOutput of introsort:\n");
-      for (int val : introsort_array) {
+      buffered_writer.write("\nOutput of heapsort:\n");
+      for (int val : heapsort_array) {
           buffered_writer.write(String.valueOf(val) + "\n");
       }
 
-      buffered_writer.write("\nOutput of heapsort:\n");
-      for (int val : heapsort_array) {
+      buffered_writer.write("\nOutput of introsort:\n");
+      for (int val : introsort_array) {
           buffered_writer.write(String.valueOf(val) + "\n");
       }
 
