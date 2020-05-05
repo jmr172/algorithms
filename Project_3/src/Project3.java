@@ -64,6 +64,8 @@ public class Project3 {
     Untangler untangler = new Untangler();
     boolean success = untangler.untangle(x,y,s);
 
+    // System.out.println("Comparisons: " + untangler.counter);
+
     if (success) {
       System.out.println("\nTRUE: The signal " + s + " is an interweaving of the signals " + x + " and " + y);
       System.out.println("x\': " + untangler.x1);

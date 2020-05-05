@@ -15,8 +15,12 @@ public class Untangler {
   public int s_index = 0;
   public boolean first_time = true;
 
+
   public String x1 = "";
   public String y1 = "";
+
+  // number of comparisons for analysis
+  public int counter = 0;
 
   // Empty constructor
   public Untangler() {}
@@ -25,6 +29,8 @@ public class Untangler {
     char[] x = a.toCharArray();
     char[] y = b.toCharArray();
     char[] s = q.toCharArray();
+
+    counter = 0;
 
     x_index = 0;
     y_index = 0;
@@ -37,6 +43,7 @@ public class Untangler {
     // System.out.println("Check if x leads...");
     //check if x leads
     for (char c : s) {
+      counter++;
       s_index++;
       // Step 1
       if (first_time == true) {
@@ -81,6 +88,7 @@ public class Untangler {
     // System.out.println("Check if y leads...");
     //check if y leads
     for (char c : s) {
+      counter++;
       s_index++;
       // Step 1
       if (first_time == true) {

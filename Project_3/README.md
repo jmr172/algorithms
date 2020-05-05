@@ -3,7 +3,10 @@
 ## Introduction
 
 ```
+Usage:
 $ javac Project3.java && java Project3 x y ../input/in.txt
+Example:
+$ javac Project3.java && java Project3 1100 1100 ../input/in.txt
 ```
 
 * x is the first of the known signals (ie 101)
@@ -101,4 +104,4 @@ The algorithm will iterate through s once for x leading and once for y leading.
 The complexity of this algorithm is therefore O(2n) where n is the size of s.
 
 ###### Run Time
-The figure below:
+See analysis/README.pdf
